@@ -12,6 +12,7 @@ return {
 		{ 'gD',         vim.lsp.buf.declaration,     description = 'Open the declaration' },
 		{ 'gr',         vim.lsp.buf.references,      description = 'Open the reference' },
 		{ 'gi',         vim.lsp.buf.implementation,  description = 'Open the implementation' },
+		{ '<leader>h',  vim.lsp.buf.signature_help,  description = 'Open the implementation' },
   },
   commands = {
     -- easily create user commands

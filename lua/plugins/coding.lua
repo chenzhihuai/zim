@@ -1,4 +1,5 @@
 return {
+  -- "onsails/lspkind.nvim",
 	-- lsp ui
 	{
 		'nvimdev/lspsaga.nvim',
@@ -43,5 +44,11 @@ return {
 		config = require("config.lspconfig")
 	},
 
-	{ "folke/trouble.nvim" }
+  {
+    "folke/trouble.nvim",
+    cmd = "Trouble",
+    config = function()
+      require("trouble").setup()
+    end
+  },
 }

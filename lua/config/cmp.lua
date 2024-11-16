@@ -1,6 +1,6 @@
 return function()
 	local cmp = require 'cmp'
-  local opt={
+  local opts={
 		snippet = {
 			-- REQUIRED - you must specify a snippet engine
 			expand = function(args)
@@ -33,8 +33,8 @@ return function()
 			{ name = 'nvim_lua' },
 		})
 	}
-  opt=vim.tbl_deep_extend('force', opt, require('nvchad.cmp'))
-	cmp.setup(opt)
+  opts=vim.tbl_deep_extend('force', opts, require('nvchad.cmp'))
+	cmp.setup(opts)
 	require("luasnip.loaders.from_vscode").lazy_load()
 	-- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
 	-- Set configuration for specific filetype.
