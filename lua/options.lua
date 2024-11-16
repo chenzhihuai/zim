@@ -1,4 +1,4 @@
-vim.opt.showtabline=2
+vim.showtabline=2
 vim.opt.laststatus=3
 vim.opt.clipboard="unnamed,unnamedplus"
 
@@ -28,4 +28,6 @@ vim.opt.smartcase = true
 -- show line numbers
 vim.opt.number = true
 
-
+-- disable for NvimTree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
