@@ -1,6 +1,7 @@
 local M = { }
 M.base46={
   theme='everforest',
+   integrations = {"trouble"},
 }
 M.ui={
   statusline={
