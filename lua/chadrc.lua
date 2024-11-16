@@ -1,13 +1,13 @@
 local M = { }
 M.base46={
-  theme='everforest',
+  theme='aquarium',
    integrations = {"trouble"},
 }
 M.ui={
   statusline={
     enabled=true,
     theme='default',
-    separator_style = "block",
+    separator_style = "default",
   },
   telescope = { style = "bordered" }, -- borderless / bordered
   tabufline = {

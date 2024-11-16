@@ -1,7 +1,7 @@
 return {
   -- theme
   {
-    "nvchad/ui",
+    "chenzhihuai/nvchad-ui",
     config = function()
       require "nvchad" 
     end
@@ -61,9 +61,9 @@ return {
       keys = {{"<c-s-p>", "<cmd>Legendary<cr>", "Command Palette"}},
       opts = require("config.legendary")
     },
-    -- {
-    --   "nvim-tree/nvim-tree.lua",
-    --   keys = {{"<leader>e", "<cmd>NvimTreeOpen<cr>", "Explorer"}},
+  --   {
+  --     "nvim-tree/nvim-tree.lua",
+  --     keys = {{"<leader>e", "<cmd>NvimTreeOpen<cr>", "Explorer"}},
   --   opts={
   --     sort = {
   --       sorter = "case_sensitive",
@@ -88,7 +88,8 @@ return {
       "nvim-tree/nvim-web-devicons",     -- not strictly required, but recommended
       "MunifTanjim/nui.nvim",
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
-    }
+    },
+    config= require('config.neotree'),
   },
   -- {
   --   'nvim-lualine/lualine.nvim',
