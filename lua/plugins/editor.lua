@@ -46,7 +46,7 @@ return {
   },
   {
     "lewis6991/satellite.nvim",
-    opts = require('config.satellite')
+    opts = {}
   },
   -- git
   {
@@ -61,7 +61,7 @@ return {
   },
   {
     "lewis6991/gitsigns.nvim",
-    opts = require("config.gitsign")
+    opts = {}
   },
   -- jump
   {
