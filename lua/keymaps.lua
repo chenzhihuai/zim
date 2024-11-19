@@ -1,6 +1,7 @@
-local map = vim.api.nvim_set_keymap
-local opt = {noremap = true, silent = true }
+local map = vim.keymap.set
 
-map('n', "[b", ":BufferLineCyclePrev<CR>", opt) -- "Next buffer" },
-map('n', "]b", ":BufferLineCycleNext<CR>", opt) -- "Next buffer" },
-
+map('n', 'Y', 'y$')
+map('n', '<c-backspace>', '<c-w>')
+map('n', 'gh', '^')
+map('n', 'gl', '$')
+map({'n','v'}, '<leader><space>', ':')

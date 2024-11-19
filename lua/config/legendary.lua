@@ -13,14 +13,14 @@ return {
 		{ 'gr',         vim.lsp.buf.references,      description = 'Open the reference' },
 		{ 'gi',         vim.lsp.buf.implementation,  description = 'Open the implementation' },
 		{ '<leader>h',  vim.lsp.buf.signature_help,  description = 'Open the implementation' },
+		{ '<leader>tf',  description = 'Open float terminal' },
+		{ '<leader>tb',  description = 'Open bottom terminal' },
   },
   commands = {
     -- easily create user commands
     {'Format', vim.lsp.buf.format, description = 'Format whole buffer' },
 		{'Neotree', description="File Explorer" },
 		{'Neogit', description='Interactive Git Interface' },
-    {'ToggleTerm', description = 'Open term in bottom' },
-    {'ToggleTerm direction=float', description = 'Open term in float' },
   },
   funcs = {
     -- Make arbitrary Lua functions that can be executed via the item finder

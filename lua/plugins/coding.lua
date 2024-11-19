@@ -1,17 +1,5 @@
 return {
-  -- "onsails/lspkind.nvim",
-	-- lsp ui
-	{
-		'nvimdev/lspsaga.nvim',
-		config = function()
-			require('lspsaga').setup({})
-		end,
-		dependencies = {
-			-- 'nvim-treesitter/nvim-treesitter', -- optional
-			'nvim-tree/nvim-web-devicons', -- optional
-		}
-	},
-	-- auto completion
+  -- auto completion
 	{
 		"hrsh7th/nvim-cmp",
 		config = require('config.cmp'),
@@ -30,26 +18,35 @@ return {
 			'saadparwaiz1/cmp_luasnip'
 		},
 	},
-
-	{ "williamboman/mason.nvim", opts = true },
-
 	{
-		"williamboman/mason-lspconfig.nvim",
-		dependencies = { "neovim/nvim-lspconfig" }
+		'numToStr/Comment.nvim',
+		opts = {}
 	},
-
 	{
-		"neovim/nvim-lspconfig",
-		dependencies = { "hrsh7th/nvim-cmp" },
-		config = require("config.lspconfig")
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+    opts={}
 	},
-
-  {
-    "folke/trouble.nvim",
-    cmd = "Trouble",
-    config = function()
-      dofile(vim.g.base46_cache .. "trouble")
-      require("trouble").setup()
-    end
-  },
+	{
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		opts={}
+	},
+	{
+		"brenton-leighton/multiple-cursors.nvim",
+		version = "*",
+		opts = {},
+		keys = {
+			{"<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>", mode = {"n", "i", "x"}, desc = "Add cursor and move up"},
+			{"<C-Down>", "<Cmd>MultipleCursorsAddDown<CR>", mode = {"n", "i", "x"}, desc = "Add cursor and move down"},
+			{"<C-LeftMouse>", "<Cmd>MultipleCursorsMouseAddDelete<CR>", mode = {"n", "i"}, desc = "Add or remove cursor"},
+			{"<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>", mode = {"n", "x"}, desc = "Add cursors to cword"},
+			{"<Leader>A", "<Cmd>MultipleCursorsAddMatchesV<CR>", mode = {"n", "x"}, desc = "Add cursors to cword in previous area"},
+			{"<Leader>d", "<Cmd>MultipleCursorsAddJumpNextMatch<CR>", mode = {"n", "x"}, desc = "Add cursor and jump to next cword"},
+			{"<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>", mode = {"n", "x"}, desc = "Jump to next cword"},
+			{"<Leader>l", "<Cmd>MultipleCursorsLock<CR>", mode = {"n", "x"}, desc = "Lock virtual cursors"},
+		},
+	},
 }
+

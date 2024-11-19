@@ -9,7 +9,7 @@ M.ui={
     theme='default',
     separator_style = "default",
   },
-  telescope = { style = "bordered" }, -- borderless / bordered
+  telescope = { style = "borderless" }, -- borderless / bordered
   tabufline = {
     enabled = true,
     lazyload = true,
@@ -28,4 +28,13 @@ M.lsp={
 M.nvdash={
   load_on_startup=true,
 }
+ M.term = {
+   winopts = { number = false },
+   sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
+   float = {
+     row = 0.15, col = 0.15,
+     width = 0.7, height = 0.7,
+     border = "single",
+   },
+ }
 return M

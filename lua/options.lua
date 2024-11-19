@@ -32,4 +32,4 @@ vim.opt.number = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.opt.signcolumn='yes'
+vim.opt.signcolumn='yes:1'
