@@ -1,4 +1,4 @@
-return 
+return
 {
   "hrsh7th/nvim-cmp",
   version = false, -- last release is way too old
@@ -15,9 +15,9 @@ return
     },
     'saadparwaiz1/cmp_luasnip'
   },
-  config= function()
+  config = function()
     local cmp = require 'cmp'
-    local opts={
+    local opts = {
       snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
@@ -52,11 +52,11 @@ return
       experimental = {
         -- only show ghost text when we show ai completions
         ghost_text = {
-          hl_group = "CmpGhostText",
+          hl_group = "Comment",
         } or false,
       },
     }
-    opts=vim.tbl_deep_extend('force', opts, require('nvchad.cmp'))
+    opts = vim.tbl_deep_extend('force', opts, require('nvchad.cmp'))
     cmp.setup(opts)
     require("luasnip.loaders.from_vscode").lazy_load()
     -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
@@ -89,5 +89,4 @@ return
       matching = { disallow_symbol_nonprefix_matching = false }
     })
   end
-} 
-
+}

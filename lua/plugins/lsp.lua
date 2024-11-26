@@ -1,6 +1,15 @@
 return {
-		"neovim/nvim-lspconfig",
-		dependencies = { "hrsh7th/nvim-cmp" },
+  { "williamboman/mason.nvim", opts = {} },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = { "neovim/nvim-lspconfig" },
+    opts = {
+      ensure_installed = { "lua_ls", "volar", "ts_ls" },
+    }
+  },
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = { "hrsh7th/nvim-cmp" },
     config = function()
       local signs = { Error = "■", Warn = "●", Hint = "●", Info = "" }
       for type, icon in pairs(signs) do
@@ -8,7 +17,7 @@ return {
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
       end
       -- Set up lspconfig.
-      local lspconfig=require'lspconfig'
+      local lspconfig = require 'lspconfig'
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,
@@ -18,17 +27,17 @@ return {
         -- The first entry (without a key) will be the default handler
         -- and will be called for each installed server that doesn't have
         -- a dedicated handler.
-        function (server_name) -- default handler (optional)
+        function(server_name) -- default handler (optional)
           require("lspconfig")[server_name].setup {
             capabilities = capabilities
           }
         end,
         -- Next, you can provide a dedicated handler for specific servers.
         -- For example, a handler override for the `rust_analyzer`:
-        ["rust_analyzer"] = function ()
+        ["rust_analyzer"] = function()
           require("rust-tools").setup {}
         end,
-        ["lua_ls"] = function ()
+        ["lua_ls"] = function()
           lspconfig['lua_ls'].setup {
             settings = {
               Lua = {
@@ -61,3 +70,4 @@ return {
     end
 
   }
+}
