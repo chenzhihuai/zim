@@ -4,7 +4,6 @@ vim.g.maplocalleader = "\\"
 
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
-
 local opt = vim.opt
 
 opt.autowrite = true -- Enable auto write
@@ -17,12 +16,12 @@ opt.confirm = true -- Confirm to save changes before exiting modified buffer
 opt.cursorline = true -- Enable highlighting of the current line
 opt.expandtab = true -- Use spaces instead of tabs
 opt.fillchars = {
-  foldopen = "",
-  foldclose = "",
-  fold = " ",
-  foldsep = " ",
-  diff = "╱",
-  eob = " ",
+	foldopen = "",
+	foldclose = "",
+	fold = " ",
+	foldsep = " ",
+	diff = "╱",
+	eob = " ",
 }
 opt.foldlevel = 99
 -- opt.formatexpr = "v:lua.require'lazyvim.util'.format.formatexpr()"
@@ -34,7 +33,7 @@ opt.inccommand = "nosplit" -- preview incremental substitute
 opt.jumpoptions = "view"
 opt.laststatus = 3 -- global statusline
 opt.linebreak = true -- Wrap lines at convenient points
-opt.list = true -- Show some invisible characters (tabs...
+-- opt.list = true -- Show some invisible characters (tabs...
 opt.mouse = "a" -- Enable mouse mode
 opt.number = true -- Print line number
 opt.pumblend = 10 -- Popup blend
@@ -76,4 +75,3 @@ opt.wrap = false -- Disable line wrap
 --   opt.foldmethod = "indent"
 --   opt.foldtext = "v:lua.require'lazyvim.util'.ui.foldtext()"
 -- end
-
