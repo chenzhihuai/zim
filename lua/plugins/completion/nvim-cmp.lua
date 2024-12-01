@@ -1,5 +1,6 @@
 return {
 	"hrsh7th/nvim-cmp",
+	enabled = false,
 	version = false, -- last release is way too old
 	event = "InsertEnter",
 	dependencies = {
@@ -40,6 +41,7 @@ return {
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<C-e>"] = cmp.mapping.abort(),
 				["<Tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+				["<Cr>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 			}),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },

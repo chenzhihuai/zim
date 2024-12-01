@@ -1,2 +1,1 @@
-return 
-  { 'kevinhwang91/nvim-bqf', opts={} } -- TODO: shortcut
+return { "kevinhwang91/nvim-bqf", enabled = false, opts = {} } -- TODO: shortcut
