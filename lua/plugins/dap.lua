@@ -1,31 +1,7 @@
-local function _config()
+local function _config(_, opts)
 	vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = "" })
 
 	-- 引入nvim-dap插件
-	local dap = require("dap")
-
-	-- Python调试配置
-	dap.adapters.python = {
-		type = "executable",
-		-- command = "debugpy-adapter.cmd", -- it seem not work on windows
-		-- args = {},
-		command = "python",
-		args = { "-m", "debugpy.adapter" }, -- TODO: pip install debugpy
-	}
-
-	-- 配置一个Python调试会话
-	dap.configurations.python = {
-		{
-			name = "Python: Debug",
-			type = "python",
-			request = "launch",
-			program = "${file}", -- 当前打开的文件作为要调试的程序
-			pythonPath = function()
-				-- 返回你实际的Python可执行文件路径，这里假设你已经设置了正确的环境变量
-				return vim.fn.exepath("python")
-			end,
-		},
-	}
 end
 return {
 	{
@@ -40,12 +16,60 @@ return {
 				end,
 				desc = "Debug: Start | Continue",
 			},
-			{ "<F10>", require("dap").step_over, desc = "Debug: Step over" },
-			{ "<F11>", require("dap").step_into, desc = "Debug: Step into" },
-			{ "<F12>", require("dap").step_out, desc = "Debug: Step out" },
-			{ "<F8>", require("dap").toggle_breakpoint, desc = "Debug: Toggle breakpoint" },
-			{ "<F9>", require("dap").continue, desc = "Debug: Continue" },
+			{
+				"<F10>",
+				function()
+					require("dap").step_over()
+				end,
+				desc = "Debug: Step over",
+			},
+			{
+				"<F11>",
+				function()
+					require("dap").step_into()
+				end,
+				desc = "Debug: Step into",
+			},
+			{
+				"<F12>",
+				function()
+					require("dap").step_out()
+				end,
+				desc = "Debug: Step out",
+			},
+			{
+				"<F8>",
+				function()
+					require("dap").toggle_breakpoint()
+				end,
+				desc = "Debug: Toggle breakpoint",
+			},
+			{
+				"<F9>",
+				function()
+					require("dap").continue()
+				end,
+				desc = "Debug: Continue",
+			},
 		},
+	},
+	{
+		"jay-babu/mason-nvim-dap.nvim",
+		dependencies = { "mfussenegger/nvim-dap" },
+		config = function(_, opts)
+			opts.adapters = opts.adapters or {}
+			opts.configurations = opts.configurations or {}
+			require("mason-nvim-dap").setup({
+				ensure_installed = opts.ensure_installed,
+				handlers = {
+					function(config)
+						config.adapters = opts.adapters[config.name] or config.adapters
+						config.configrations = opts.configurations[config.name] or config.configrations
+						require("mason-nvim-dap").default_setup(config)
+					end,
+				},
+			})
+		end,
 	},
 	-- nvim-dap-ui 插件配置
 	{
