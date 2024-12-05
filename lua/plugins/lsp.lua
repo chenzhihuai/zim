@@ -114,9 +114,13 @@ return {
 				ensure_installed = opts.ensure_installed or {},
 				handlers = {
 					function(server_name)
-						local server = opts.servers[server_name] or {}
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
+						require("astrolsp").lsp_setup(server_name)
+						-- local server = opts.servers[server_name] or {}
+						-- if server.enabled then
+						-- 	server.capabilities =
+						-- 		vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+						-- 	require("lspconfig")[server_name].setup(server)
+						-- end
 					end,
 				},
 			}
@@ -135,6 +139,7 @@ return {
 			{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			{ "AstroNvim/astrolsp", opts = {} },
 
 			-- Useful status updates for LSP.
 			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -144,6 +149,7 @@ return {
 			-- "hrsh7th/cmp-nvim-lsp",
 		},
 		config = function()
+			vim.tbl_map(require("astrolsp").lsp_setup, require("astrolsp").config.servers)
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = OnLspAttach,

@@ -17,6 +17,7 @@ return {
 			vim.list_extend(opts.ensure_installed, { "lua_ls" })
 			opts.servers = opts.servers or {}
 			opts.servers.lua_ls = {
+				enabled = true,
 				-- cmd = {...},
 				-- filetypes = { ...},
 				-- capabilities = {},
