@@ -29,7 +29,7 @@ require("lazy").setup({
 		{ import = "plugins.ui" },
 		{ import = "plugins.manipulating" },
 		{ import = "plugins.completion" },
-		{ import = "packs" },
+		-- { import = "packs.cpp" },
 	},
 	change_detection = {
 		notify = false,
