@@ -30,6 +30,9 @@ require("lazy").setup({
 		{ import = "plugins.manipulating" },
 		{ import = "plugins.completion" },
 		-- { import = "packs.cpp" },
+		{ import = "astrocommunity.pack.cpp" },
+		{ import = "astrocommunity.pack.python" },
+		{ import = "astrocommunity.pack.lua" },
 	},
 	change_detection = {
 		notify = false,

@@ -86,70 +86,55 @@ local function OnLspAttach(event)
 	end
 end
 return {
+	{
+		"williamboman/mason.nvim",
+		cmd = {
+			"Mason",
+			"MasonInstall",
+			"MasonUninstall",
+			"MasonUninstallAll",
+			"MasonLog",
+		},
+		opts = {
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_uninstalled = "✗",
+					package_pending = "⟳",
+				},
+			},
+		},
+		build = ":MasonUpdate",
+	},
 	{ "Bilal2453/luvit-meta", lazy = true },
 
-	{
-		"williamboman/mason-lspconfig.nvim",
-		config = function(_, opts)
-			-- LSP servers and clients are able to communicate to each other what features they support.
-			--  By default, Neovim doesn't support everything that is in the LSP specification.
-			--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
-
-			-- Enable the following language servers
-			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-			--
-			--  Add any additional override configuration in the following tables. Available keys are:
-			--  - cmd (table): Override the default command used to start the server
-			--  - filetypes (table): Override the default list of associated filetypes for the server
-			--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-			--  - settings (table): Override the default settings passed when initializing the server.
-			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-			opts.servers = opts.servers or {}
-
-			local config = {
-				ensure_installed = opts.ensure_installed or {},
-				handlers = {
-					function(server_name)
-						require("astrolsp").lsp_setup(server_name)
-						-- local server = opts.servers[server_name] or {}
-						-- if server.enabled then
-						-- 	server.capabilities =
-						-- 		vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						-- 	require("lspconfig")[server_name].setup(server)
-						-- end
-					end,
-				},
-			}
-			require("mason-lspconfig").setup(config)
-		end,
-	},
 	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		opts = { ensure_installed = {} },
 	},
 	{
-		-- Main LSP Configuration
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			-- Automatically install LSPs and related tools to stdpath for Neovim
-			{ "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-			"williamboman/mason-lspconfig.nvim",
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			{ "AstroNvim/astrolsp", opts = {} },
-
-			-- Useful status updates for LSP.
-			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-			{ "j-hui/fidget.nvim", opts = {} },
-
-			-- Allows extra capabilities provided by nvim-cmp
-			-- "hrsh7th/cmp-nvim-lsp",
+			{
+				"williamboman/mason-lspconfig.nvim", -- MUST be set up before `nvim-lspconfig`
+				dependencies = { "williamboman/mason.nvim" },
+				opts = function()
+					return {
+						-- use AstroLSP setup for mason-lspconfig
+						handlers = {
+							function(server)
+								require("astrolsp").lsp_setup(server)
+							end,
+						},
+					}
+				end,
+			},
 		},
 		config = function()
+			-- set up servers configured with AstroLSP
 			vim.tbl_map(require("astrolsp").lsp_setup, require("astrolsp").config.servers)
+
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = OnLspAttach,
@@ -163,7 +148,6 @@ return {
 				diagnostic_signs[vim.diagnostic.severity[type]] = icon
 			end
 			vim.diagnostic.config({ signs = { text = diagnostic_signs } })
-			-- end
 		end,
 	},
 }
