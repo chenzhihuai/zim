@@ -1,5 +1,8 @@
-return
-  {
-    'numToStr/Comment.nvim',
-    opts = {}
-  }
+return {
+  'numToStr/Comment.nvim',
+  dependencies = {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+  },
+  opts = {},
+  enabled = true,
+}

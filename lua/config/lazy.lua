@@ -33,6 +33,8 @@ require("lazy").setup({
 		{ import = "astrocommunity.pack.cpp" },
 		{ import = "astrocommunity.pack.python" },
 		{ import = "astrocommunity.pack.lua" },
+		{ import = "astrocommunity.pack.ps1" },
+		{ import = "astrocommunity.pack.vue" },
 	},
 	change_detection = {
 		notify = false,
