@@ -11,7 +11,7 @@ M.ui = {
   },
   telescope = { style = "borderless" }, -- borderless / bordered
   tabufline = {
-    enabled = true,
+    enabled = false,
     lazyload = true,
     order = { "treeOffset", "buffers", "tabs", "btns" },
     modules = nil,
