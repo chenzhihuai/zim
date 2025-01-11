@@ -1,25 +1,26 @@
 local M = {}
 M.base46 = {
   theme = "aquarium",
+  integrations = { 'dap', 'cmp', 'notify', 'telescope', 'todo' }
 }
 M.ui = {
   statusline = {
     enabled = true,
     theme = "default",
     -- separator_style = "arrow",
-    separator_style = "default",
+    -- separator_style = "default",
   },
-  telescope = { style = "borderless" }, -- borderless / bordered
+  telescope = { style = "bordered" }, -- borderless / bordered
   tabufline = {
-    enabled = false,
+    enabled = true,
     lazyload = true,
     order = { "treeOffset", "buffers", "tabs", "btns" },
     modules = nil,
   },
   cmp = {
     lspkind_text = true,
-    icons_left = true,
-    style = "atom",
+    icons_left = false,
+    style = "default", -- default/flat_light/flat_dark/atom/atom_colored
   },
 }
 M.lsp = {

@@ -70,16 +70,16 @@ return {
       -- automatically load keymaps from lazy.nvim's `keys` option
       lazy_nvim = true,
       -- load keymaps and commands from nvim-tree.lua
-      nvim_tree = true,
+      -- nvim_tree = true,
       -- load commands from smart-splits.nvim
       -- and create keymaps, see :h legendary-extensions-smart-splits.nvim
-      smart_splits = {
-        directions = { 'h', 'j', 'k', 'l' },
-        mods = {
-          move = '<C>',
-          resize = '<M>',
-        },
-      },
+      -- smart_splits = {
+      --   directions = { 'h', 'j', 'k', 'l' },
+      --   mods = {
+      --     move = '<C>',
+      --     resize = '<M>',
+      --   },
+      -- },
       -- load commands from op.nvim
       -- op_nvim = true,
       -- load keymaps from diffview.nvim

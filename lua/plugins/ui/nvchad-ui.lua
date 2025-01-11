@@ -5,12 +5,18 @@ return
   config = function()
     require "nvchad"
     local map = vim.keymap.set
-    -- map('n', 'Q', require("nvchad.tabufline").close_buffer)
-    -- map('n', '[b', require("nvchad.tabufline").prev)
-    -- map('n', ']b', require("nvchad.tabufline").next)
+    map('n', 'Q', require("nvchad.tabufline").close_buffer)
+    map('n', '[b', require("nvchad.tabufline").prev)
+    map('n', ']b', require("nvchad.tabufline").next)
     map('n', '<leader>tf', function() require("nvchad.term").toggle { pos = "float", id = "fa", cmd = 'pwsh' } end)
     map('n', '<leader>tt', function() require("nvchad.term").toggle { pos = "float", id = "fa", cmd = 'pwsh' } end)
     map('n', '<leader>tb', function() require("nvchad.term").toggle { pos = "bo sp", id = "fa", cmd = 'pwsh' } end)
     map('t', '<esc><esc>', function() require("nvchad.term").toggle { pos = "bo sp", id = "fa", cmd = 'pwsh' } end)
+
+    for i = 1, 9, 1 do
+      vim.keymap.set("n", string.format("<A-%s>", i), function()
+        vim.api.nvim_set_current_buf(vim.t.bufs[i])
+      end)
+    end
   end
 }
